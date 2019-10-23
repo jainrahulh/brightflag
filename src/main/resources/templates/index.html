@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Brightflag Code Test</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+<script src="js/main.js"></script>
+
+</head>
+<body ng-app="bfCodeTest">
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">BF Code Test</a>
+	</nav>
+
+	<div ng-controller="studentCtrl" class="container">
+
+		<table class="table">
+			<tr>
+				<th>Student ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Subjects</th>
+			</tr>
+			<tr ng-repeat="student in students">
+				<td>{{student.studentID}}</td>
+				<td>{{student.firstName}}</td>
+				<td>{{student.lastName}}</td>
+				<td>
+					<ul class="list-group">
+						<li class="list-group-item py-2" ng-repeat="subject in student.subjects">{{subject.subjectName}}</li>
+					</ul>
+				</td>
+				<td>
+					<select class="custom-select" ng-model="student.assignSubject.id" ng-options="subject.subjectID as subject.subjectName for subject in student.availableSubjects">
+					</select>
+				</td>
+				<td>
+					<button type="button" ng-click="assignSubject(student)" ng-disabled="!student.assignSubject.id" class="btn btn-secondary">Assign</button>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+</body>
+</html>
